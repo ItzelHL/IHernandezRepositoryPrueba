@@ -3,10 +3,10 @@ package com.CRUD.IHernandezRepositoryPrueba.JPA;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,8 +14,15 @@ import jakarta.persistence.Table;
 public class Automovil 
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idautomovil")
+    private int idAutomovil;
+    
     @Column(name = "noserie")
     private String noSerie;
+    
+    @Column(name = "modelo")
+    private String modelo;
     
     @Column(name = "anio")
     private String anio;
@@ -26,36 +33,39 @@ public class Automovil
     @Column(name = "carroceria")
     private String carroceria;
     
-    @Column(name = "asientos")
-    private String asientos;
-    
     @Column(name = "motor")
     private String motor;
     
     @Column(name = "potencia")
     private String potencia;
     
-    @Column(name = "tiposfrenos")
-    private String tiposFrenos;
-    
     @ManyToOne
     @JoinColumn(name = "idmarca")
-    private Marca marca;
+    public Marca marca;
     
     
     public Automovil(){}
     
-    public Automovil(String noSerie, String anio, String color, String carroceria, String asientos, String motor, String potencia, String tiposfrenos, Marca marca)
+    public Automovil(int idAutomovil, String noSerie, String modelo, String anio, String color, String carroceria, String motor, String potencia, Marca marca)
     {
+        this.idAutomovil = idAutomovil;
         this.noSerie = noSerie;
+        this.modelo = modelo;
         this.anio = anio;
         this.color = color;
         this.carroceria = carroceria;
-        this.asientos = asientos;
         this.motor = motor;
         this.potencia = potencia;
-        this.tiposFrenos = tiposfrenos;
         this.marca = marca;
+    }
+    
+    public void setIdAutomovil(int idAutomovil)
+    {
+        this.idAutomovil = idAutomovil;
+    }
+    public int getIdAutomovil()
+    {
+        return idAutomovil;
     }
     
     public void setNoSerie(String noSerie)
@@ -65,6 +75,15 @@ public class Automovil
     public String getNoSerie()
     {
         return noSerie;
+    }
+    
+    public void setModelo(String modelo)
+    {
+        this.modelo = modelo;
+    }
+    public String getModelo()
+    {
+        return modelo;
     }
     
     public void setAnio(String anio)
@@ -94,15 +113,6 @@ public class Automovil
         return carroceria;
     }
 
-    public void setAsientos(String asientos) 
-    {
-        this.asientos = asientos;
-    }
-    public String getAsientos() 
-    {
-        return asientos;
-    }
-
     public void setMotor(String motor) 
     {
         this.motor = motor;
@@ -121,12 +131,12 @@ public class Automovil
         return potencia;
     }
 
-    public void setTiposFrenos(String tiposFrenos) 
+    public void setMarca(Marca marca)
     {
-        this.tiposFrenos = tiposFrenos;
+        this.marca = marca;
     }
-    public String getTiposFrenos() 
+    public Marca getMarca() 
     {
-        return tiposFrenos;
+        return marca;
     }
 }

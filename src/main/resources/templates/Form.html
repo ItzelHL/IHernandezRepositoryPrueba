@@ -1,0 +1,180 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Form - Automoviles</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--        Bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        
+    </head>
+    
+    
+    <body>
+        
+        <!-- HEADER -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/automovil}">🚗 Automóviles</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" th:href="@{/automovil}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/automovil/add}">Agregar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/automovil/reportes}">Reportes</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- BODY -->
+        <div class="container">
+            <form method="post" th:action="@{/automovil/form}" th:object="${automovil}">
+                <input type="hidden" th:field="*{idAutomovil}">
+                
+                <!-- AGREGAR AUTOMÓVIL -->
+                <div th:if="*{(idAutomovil == 0)}">
+                    <hr class="my-4">
+                    <h4 class="mb-3" style="padding-bottom: 10px">Agregar automóvil</h4>
+                    <div class="row g-3 p-3 mb-2 bg-dark text-white">
+                        
+                        <!-- Número de serie -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="noSerie" class="form-label">No. Serie</label>
+                            <input type="text" id="noSerie" class="form-control" placeholder ="No. Serie" th:field="*{noSerie}" required>
+                        </div>
+                                        
+                        <!-- Marca -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="marca" class="form-label">Marca</label>
+                            <select id="nombreMarca" class="form-select" th:field="*{marca.idMarca}">
+                                <option value="0" selected>Seleccione una marca</option>
+                                <option th:each="marca : ${marcas}" th:text="${marca.nombre}" th:value="${marca.idMarca}"></option>
+                            </select>
+                        </div>
+                        
+                        <!-- Modelo -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="modelo" class="form-label">Modelo</label>
+                            <input type="text" id="modelo" class="form-control" placeholder ="Modelo" th:field="*{modelo}" required>
+                        </div>
+                        
+                        <!-- Año -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="anio" class="form-label">Año</label>
+                            <input type="text" id="anio" class="form-control" placeholder="Año" th:field="*{anio}" required>
+                        </div>
+                        
+                        <!-- Color -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="color" class="form-label">Color</label>
+                            <input type="text" id="color" class="form-control" placeholder="Color" th:field="*{color}" required>
+                        </div>
+                        
+                        <!-- Carrocería -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="carroceria" class="form-label">Carroceria</label>
+                            <input type="text" id="carroceria" class="form-control" placeholder="Carroceria" th:field="*{carroceria}">
+                        </div>
+                        
+                        <!-- Motor -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="motor" class="form-label">Motor</label>
+                            <input type="text" id="motor" class="form-control" placeholder="Motor" th:field="*{motor}">
+                        </div>
+                        
+                        <!-- Potencia -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="potencia" class="form-label">Potencia</label>
+                            <input type="text" id="potencia" class="form-control" placeholder="Potencia" th:field="*{potencia}">
+                        </div>
+                        
+                        <!-- Botón agregar -->
+                        <div>
+                            <button type="submit" class="btn btn-success mt-4 w-100 fw-bold" id="btn-Agregar" th:href="@{/automovil/form}">Agregar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- EDITAR AUTOMÓVIL -->
+                <div th:if="*{idAutomovil > 0}">
+                    <hr class="my-4">
+                    <h4 class="mb-3" style="padding-bottom: 10px">Editar automóvil</h4>
+                    <div class="row g-3 p-3 mb-2 bg-dark text-white">
+                        
+                        <!-- Número de serie -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="noSerie" class="form-label">No. Serie</label>
+                            <input type="text" id="noSerie" class="form-control" placeholder ="No. Serie" th:field="*{noSerie}" required>
+                        </div>
+                                        
+                        <!-- Marca -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="marca" class="form-label">Marca</label>
+                            <select id="nombreMarca" class="form-select" th:field="*{marca.idMarca}">
+                                <option value="0" selected>Seleccione una marca</option>
+                                <option th:each="marca : ${marcas}" th:text="${marca.nombre}" th:value="${marca.idMarca}"></option>
+                            </select>
+                        </div>
+                        
+                        <!-- Modelo -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="modelo" class="form-label">Modelo</label>
+                            <input type="text" id="modelo" class="form-control" placeholder ="Modelo" th:field="*{modelo}" required>
+                        </div>
+                        
+                        <!-- Año -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="anio" class="form-label">Año</label>
+                            <input type="text" id="anio" class="form-control" placeholder="Año" th:field="*{anio}" required>
+                        </div>
+                        
+                        <!-- Color -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="color" class="form-label">Color</label>
+                            <input type="text" id="color" class="form-control" placeholder="Color" th:field="*{color}" required>
+                        </div>
+                        
+                        <!-- Carrocería -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="carroceria" class="form-label">Carroceria</label>
+                            <input type="text" id="carroceria" class="form-control" placeholder="Carroceria" th:field="*{carroceria}">
+                        </div>
+                        
+                        <!-- Motor -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="motor" class="form-label">Motor</label>
+                            <input type="text" id="motor" class="form-control" placeholder="Motor" th:field="*{motor}">
+                        </div>
+                        
+                        <!-- Potencia -->
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <label for="potencia" class="form-label">Potencia</label>
+                            <input type="text" id="potencia" class="form-control" placeholder="Potencia" th:field="*{potencia}">
+                        </div>
+                        
+                        <!-- Botón agregar -->
+                        <div>
+                            <button type="submit" class="btn btn-success mt-4 w-100 fw-bold" id="btn-Agregar" th:href="@{/automovil/form}">Editar</button>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

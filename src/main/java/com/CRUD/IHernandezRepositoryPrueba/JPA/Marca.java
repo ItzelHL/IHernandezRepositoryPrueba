@@ -1,12 +1,13 @@
 package com.CRUD.IHernandezRepositoryPrueba.JPA;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
@@ -24,8 +25,9 @@ public class Marca
     @Column(name = "nombre")
     private String nombre;
     
-    @Column(name = "modelo")
-    private String modelo;
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    public List<Automovil> automoviles = new ArrayList<>();
     
     public Marca(){}
 
@@ -33,7 +35,6 @@ public class Marca
     {
         this.idMarca = idMarca;
         this.nombre = nombre;
-        this.modelo = modelo;
     }
     
     public void setIdMarca(int idMarca) 
@@ -52,14 +53,5 @@ public class Marca
     public String getNombre()
     {
         return nombre;
-    }
-    
-    public void setModelo(String modelo)
-    {
-        this.modelo = modelo;
-    }
-    public String getModelo()
-    {
-        return modelo;
     }
 }

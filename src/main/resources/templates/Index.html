@@ -1,0 +1,142 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Index - Automoviles</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--        Bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+        
+        <!-- HEADER -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/automovil}">🚗 Automóviles</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" th:href="@{/automovil}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ejemplo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ejemplo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- BODY -->
+        <div class="container">
+            <hr class="my-4">
+            <form method="post" th:action="@{/automovil}" th:object="${autoBusqueda}">
+                <div class="row gx-2 gx-md-3 mb-7">
+
+                    <!-- Búsqueda por número de serie -->
+                    <div class= "col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">@</span>
+                            <input type="text" class="form-control" placeholder="No. Serie" th:field="*{noSerie}">
+                        </div>
+                    </div>
+
+                    <!-- Búsqueda por marca -->
+                    <div class= "col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">@</span>
+                            <select id="nombreMarca" class="form-select" th:field="*{marca.nombre}">
+                                <option value="0" selected>Seleccione una marca</option>
+                                <option th:each="marca : ${marcas}" th:text="${marca.nombre}" th:value="${marca.nombre}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Botón de búsqueda -->
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                        <button type="submit" class="btn btn-primary btn-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                            </svg> Buscar
+                        </button>
+                    </div>
+                    
+                    <!-- Botón agregar -->
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                        <a th:href="@{/automovil/form/{idAutomovil}(idAutomovil = 0)}" class="btn btn-success btn-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                            </svg>
+                            Agregar automóvil</a>
+                    </div>
+                </div>
+            </form>
+            
+            
+            
+            <table class="table table-striped-columns table-hover">
+            <thead>
+                <tr class = "table-dark text-center">
+                    <th scope="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">#</th>
+                    <th scope="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">Id</th>
+                    <th scope="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">No. Serie</th>
+                    <th scope="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">Marca</th>
+                    <th scope="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">Modelo</th>
+                    <th scope="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">Año</th>
+                    <th scope="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">Color</th>
+                    <th scope="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">Carroceria</th>
+                    <th scope="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">Motor</th>
+                    <th scope="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">Potencia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="automovil : ${automoviles}">
+                    <!-- Botones para ver detalle y eliminar -->
+                    <td>
+                        <a th:href="@{/automovil/form/{idAutomovil}(idAutomovil = ${automovil.idAutomovil})}" class="btn btn-success">Detalle</a>
+                        <a th:href="@{/automovil/delete/{idAutomovil}(idAutomovil = ${automovil.idAutomovil})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                    
+                    <!-- Id del automovil -->
+                    <td th:text="${automovil.idAutomovil}"></td>
+                    
+                    <!-- No. Serie -->
+                    <td th:text="${automovil.noSerie}"></td>
+                    
+                    <!-- Marca -->
+                    <td th:text="${automovil.marca.nombre}"></td>
+                    
+                    <!-- Modelo -->
+                    <td th:text="${automovil.modelo}"></td>
+                    
+                    <!-- Año -->
+                    <td th:text="${automovil.anio}"></td>
+                    
+                    <!-- Color -->
+                    <td th:text="${automovil.color}"></td>
+                    
+                    <!-- Carrocería -->
+                    <td th:text="${automovil.carroceria}"></td>
+                    
+                    <!-- Motor -->
+                    <td th:text="${automovil.motor}"></td>
+                    
+                    <!-- Potencia -->
+                    <td th:text="${automovil.potencia}"></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </body>
+</html>
