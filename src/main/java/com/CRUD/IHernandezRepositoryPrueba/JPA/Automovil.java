@@ -8,6 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "automovil")
@@ -18,27 +20,36 @@ public class Automovil
     @Column(name = "idautomovil")
     private int idAutomovil;
     
+    @NotBlank
+    @Max(17)
     @Column(name = "noserie")
     private String noSerie;
     
+    @NotBlank
     @Column(name = "modelo")
     private String modelo;
     
+    @NotBlank
     @Column(name = "anio")
     private String anio;
     
+    @NotBlank
     @Column(name = "color")
     private String color;
     
+    @NotBlank
     @Column(name = "carroceria")
     private String carroceria;
     
+    @NotBlank
     @Column(name = "motor")
     private String motor;
     
+    @NotBlank
     @Column(name = "potencia")
     private String potencia;
     
+    @NotBlank
     @ManyToOne
     @JoinColumn(name = "idmarca")
     public Marca marca;

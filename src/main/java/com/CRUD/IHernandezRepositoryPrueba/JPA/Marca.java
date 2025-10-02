@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class Marca
     @Column(name = "idmarca")
     private int idMarca;
     
+    @NotBlank
     @Column(name = "nombre")
     private String nombre;
     

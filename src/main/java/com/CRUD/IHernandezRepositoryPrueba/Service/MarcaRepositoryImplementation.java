@@ -4,8 +4,10 @@ import com.CRUD.IHernandezRepositoryPrueba.JPA.Marca;
 import com.CRUD.IHernandezRepositoryPrueba.JPA.Result;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 @Service
+@Validated
 public class MarcaRepositoryImplementation 
 {
     private final IMarcaRepository iMarcaRepository;

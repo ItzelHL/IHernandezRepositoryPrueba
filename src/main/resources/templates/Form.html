@@ -54,51 +54,67 @@
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="noSerie" class="form-label">No. Serie</label>
                             <input type="text" id="noSerie" class="form-control" placeholder ="No. Serie" th:field="*{noSerie}" required>
+                            <div class="invalid-feedback">El número de serie debe contener entre 17 y 20 carácteres alfanuméricos</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                                         
                         <!-- Marca -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="marca" class="form-label">Marca</label>
-                            <select id="nombreMarca" class="form-select" th:field="*{marca.idMarca}">
+                            <select id="marca" class="form-select" th:field="*{marca.idMarca}" required>
                                 <option value="0" selected>Seleccione una marca</option>
                                 <option th:each="marca : ${marcas}" th:text="${marca.nombre}" th:value="${marca.idMarca}"></option>
                             </select>
+                            <div class="invalid-feedback">Debe seleccionar una marca</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Modelo -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="modelo" class="form-label">Modelo</label>
                             <input type="text" id="modelo" class="form-control" placeholder ="Modelo" th:field="*{modelo}" required>
+                            <div class="invalid-feedback">El modelo solo puede incluir números y letras</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Año -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="anio" class="form-label">Año</label>
-                            <input type="text" id="anio" class="form-control" placeholder="Año" th:field="*{anio}" required>
+                            <input type="text" id="anio" class="form-control" placeholder="ej. 2025" th:field="*{anio}" required>
+                            <div class="invalid-feedback">Solo se permiten números (ej. 2025)</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Color -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="color" class="form-label">Color</label>
-                            <input type="text" id="color" class="form-control" placeholder="Color" th:field="*{color}" required>
+                            <input type="text" id="color" class="form-control" placeholder="ej. Rojo" th:field="*{color}" required>
+                            <div class="invalid-feedback">Solo se permiten letras</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Carrocería -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="carroceria" class="form-label">Carroceria</label>
-                            <input type="text" id="carroceria" class="form-control" placeholder="Carroceria" th:field="*{carroceria}">
+                            <input type="text" id="carroceria" class="form-control" placeholder="ej. SUV" th:field="*{carroceria}">
+                            <div class="invalid-feedback">Solo se permiten letras</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Motor -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="motor" class="form-label">Motor</label>
-                            <input type="text" id="motor" class="form-control" placeholder="Motor" th:field="*{motor}">
+                            <input type="text" id="motor" class="form-control" placeholder="ej. Híbrido, de combustión, eléctrico" th:field="*{motor}">
+                            <div class="invalid-feedback">Solo se permiten letras</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Potencia -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-                            <label for="potencia" class="form-label">Potencia</label>
-                            <input type="text" id="potencia" class="form-control" placeholder="Potencia" th:field="*{potencia}">
+                            <label for="potencia" class="form-label">Potencia (Hp)</label>
+                            <input type="text" id="potencia" class="form-control" placeholder="ej. 165" th:field="*{potencia}">
+                            <div class="invalid-feedback">Solo se permiten números</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Botón agregar -->
@@ -118,52 +134,68 @@
                         <!-- Número de serie -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="noSerie" class="form-label">No. Serie</label>
-                            <input type="text" id="noSerie" class="form-control" placeholder ="No. Serie" th:field="*{noSerie}" required>
+                            <input type="text" id="noSerie" name="noSerie" class="form-control" placeholder ="No. Serie" th:field="*{noSerie}" required>
+                            <div class="invalid-feedback">El número de serie debe contener entre 17 y 20 carácteres alfanuméricos</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                                         
                         <!-- Marca -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="marca" class="form-label">Marca</label>
-                            <select id="nombreMarca" class="form-select" th:field="*{marca.idMarca}">
+                            <select id="marca" class="form-select" th:field="*{marca.idMarca}">
                                 <option value="0" selected>Seleccione una marca</option>
                                 <option th:each="marca : ${marcas}" th:text="${marca.nombre}" th:value="${marca.idMarca}"></option>
                             </select>
+                            <div class="invalid-feedback">Debe seleccionar una marca</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Modelo -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="modelo" class="form-label">Modelo</label>
                             <input type="text" id="modelo" class="form-control" placeholder ="Modelo" th:field="*{modelo}" required>
+                            <div class="invalid-feedback">El modelo solo puede incluir números y letras</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Año -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="anio" class="form-label">Año</label>
-                            <input type="text" id="anio" class="form-control" placeholder="Año" th:field="*{anio}" required>
+                            <input type="text" id="anio" class="form-control" placeholder="ej. 2025" th:field="*{anio}" required>
+                            <div class="invalid-feedback">Solo se permiten números (ej. 2025)</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Color -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="color" class="form-label">Color</label>
-                            <input type="text" id="color" class="form-control" placeholder="Color" th:field="*{color}" required>
+                            <input type="text" id="color" class="form-control" placeholder="ej. Rojo" th:field="*{color}" required>
+                            <div class="invalid-feedback">Solo se permiten letras</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Carrocería -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="carroceria" class="form-label">Carroceria</label>
-                            <input type="text" id="carroceria" class="form-control" placeholder="Carroceria" th:field="*{carroceria}">
+                            <input type="text" id="carroceria" class="form-control" placeholder="ej. SUV" th:field="*{carroceria}">
+                            <div class="invalid-feedback">Solo se permiten letras</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Motor -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                             <label for="motor" class="form-label">Motor</label>
-                            <input type="text" id="motor" class="form-control" placeholder="Motor" th:field="*{motor}">
+                            <input type="text" id="motor" class="form-control" placeholder="ej. de combustión, híbrido, eléctrico" th:field="*{motor}">
+                            <div class="invalid-feedback">Solo se permiten letras</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Potencia -->
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-                            <label for="potencia" class="form-label">Potencia</label>
-                            <input type="text" id="potencia" class="form-control" placeholder="Potencia" th:field="*{potencia}">
+                            <label for="potencia" class="form-label">Potencia (Hp)</label>
+                            <input type="text" id="potencia" class="form-control" placeholder="ej. 165" th:field="*{potencia}">
+                            <div class="invalid-feedback">Solo se permiten números</div>
+                            <div class="valid-feedback">¡Correcto!</div>
                         </div>
                         
                         <!-- Botón agregar -->
@@ -176,5 +208,63 @@
                 </div>
             </form>
         </div>
+        <script>
+            const patterns = {
+                noSerie: /^[a-zA-Z0-9]{17,20}$/,
+                modelo: /^[a-zA-Z0-9 ]+$/,
+                anio: /^[0-9]{4}$/,
+                color: /^[a-zA-ZáÁéÉíÍóÓúÚñÑ]+$/,
+                carroceria: /^[a-zA-ZáÁéÉíÍóÓúÚñÑ ]*$/,
+                motor: /^[a-zA-ZáÁéÉíÍóÓúÚñÑ ]*$/,
+                potencia: /^[a-z0-9]*$/
+            };
+            
+            function validarCampos(input, regex)
+            {
+                if(regex.test(input.value.trim()))
+                {
+                    input.classList.remove("is-invalid");
+                    input.classList.add("is-valid");
+                }
+                else
+                {
+                    input.classList.remove("is-valid");
+                    input.classList.add("is-invalid");
+                }
+            }
+            
+            function validarMarca(select)
+            {
+                if(select.value !== "0" && select.value !== "")
+                {
+                    select.classList.remove("is-invalid");
+                    select.classList.add("is-valid");
+                }
+                else
+                {
+                    select.classList.remove("is-valid");
+                    select.classList.add("is-invalid");
+                }
+            }
+            
+            window.onload = function()
+            {
+                document.querySelectorAll("input").forEach(input => {
+                    const rule = patterns[input.name];
+                    
+                    if(rule)
+                    {
+                        input.addEventListener("input", () =>validarCampos(input, rule));
+                    }
+                });
+                
+                const marcaSelect = document.getElementById("marca");
+                if(marcaSelect)
+                {
+                    marcaSelect.addEventListener("change", () =>validarMarca(marcaSelect));
+                }
+            }
+        </script>
+        
     </body>
 </html>

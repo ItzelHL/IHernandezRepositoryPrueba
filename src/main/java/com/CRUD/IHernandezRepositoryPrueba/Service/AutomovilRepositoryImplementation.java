@@ -3,11 +3,14 @@ package com.CRUD.IHernandezRepositoryPrueba.Service;
 import com.CRUD.IHernandezRepositoryPrueba.JPA.Automovil;
 import com.CRUD.IHernandezRepositoryPrueba.JPA.Result;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 @Service
+@Validated
 public class AutomovilRepositoryImplementation
 {
     private final IAutomovilRepository iAutomovilRepository;

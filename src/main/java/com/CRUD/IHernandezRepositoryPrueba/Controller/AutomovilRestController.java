@@ -3,6 +3,7 @@ package com.CRUD.IHernandezRepositoryPrueba.Controller;
 import com.CRUD.IHernandezRepositoryPrueba.JPA.Automovil;
 import com.CRUD.IHernandezRepositoryPrueba.JPA.Result;
 import com.CRUD.IHernandezRepositoryPrueba.Service.AutomovilRepositoryImplementation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,7 +56,7 @@ public class AutomovilRestController
     }
     
     @PostMapping("add")
-    public ResponseEntity Add(@RequestBody Automovil automovil)
+    public ResponseEntity Add(@Valid @RequestBody Automovil automovil)
     {
         Result result = automovilRepositoryImplementation.Add(automovil);
         return ResponseEntity.ok(result);
